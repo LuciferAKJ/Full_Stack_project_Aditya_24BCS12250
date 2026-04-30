@@ -1,0 +1,271 @@
+.camera-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.camera-page__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.camera-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.camera-feed-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.camera-feed {
+  position: relative;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 4/3;
+  border: 2px solid var(--border);
+}
+
+.webcam-feed {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.camera-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cam-corner {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-color: rgba(0, 229, 255, 0.7);
+  border-style: solid;
+  transition: border-color var(--transition-base);
+}
+
+.camera-overlay.scanning .cam-corner {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+}
+
+.cam-corner--tl {
+  top: 16px;
+  left: 16px;
+  border-width: 3px 0 0 3px;
+  border-radius: 4px 0 0 0;
+}
+
+.cam-corner--tr {
+  top: 16px;
+  right: 16px;
+  border-width: 3px 3px 0 0;
+  border-radius: 0 4px 0 0;
+}
+
+.cam-corner--bl {
+  bottom: 16px;
+  left: 16px;
+  border-width: 0 0 3px 3px;
+  border-radius: 0 0 0 4px;
+}
+
+.cam-corner--br {
+  bottom: 16px;
+  right: 16px;
+  border-width: 0 3px 3px 0;
+  border-radius: 0 0 4px 0;
+}
+
+.cam-scan-line {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.9), transparent);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.7);
+  animation: scan-line 2s ease-in-out infinite;
+}
+
+.cam-feedback {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 10px 18px;
+  border: 1px solid;
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  font-size: var(--font-size-sm);
+  min-width: 220px;
+  white-space: nowrap;
+}
+
+.camera-controls {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.scan-pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: white;
+  animation: glow-pulse 1s ease-in-out infinite;
+  margin-right: 4px;
+}
+
+.camera-stats {
+  display: flex;
+  gap: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  flex-wrap: wrap;
+}
+
+.camera-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-indicator.ready {
+  background: var(--success);
+}
+
+.status-indicator.loading {
+  background: var(--warning);
+  animation: glow-pulse 1s ease-in-out infinite;
+}
+
+.status-indicator.active {
+  background: var(--success);
+  animation: glow-pulse 0.8s ease-in-out infinite;
+}
+
+.status-indicator.idle {
+  background: var(--text-muted);
+}
+
+.attendance-log {
+  display: flex;
+  flex-direction: column;
+  max-height: 520px;
+  overflow: hidden;
+}
+
+.attendance-log__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border);
+}
+
+.attendance-log__header h3 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.attendance-log__empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  padding: var(--space-2xl) 0;
+}
+
+.attendance-log__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  max-height: 420px;
+  padding-right: 4px;
+}
+
+.log-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 10px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  border-left: 3px solid var(--success);
+}
+
+.log-item__avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.log-item__name {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--text-white);
+}
+
+.log-item__uid {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+.log-item__time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+  .camera-layout {
+    grid-template-columns: 1fr;
+  }
+}
